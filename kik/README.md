@@ -1,0 +1,134 @@
+# Tutorial integration Kik to Recast.AI bot
+
+* This is a small Tutorial to show you how to integrate Kik to a Recast.AI bot
+* If you have no idea of how to use Recast.AI I advise you to check this SDK first:  [Recast.AI-nodejs-SDK](https://github.com/RecastAI/SDK-NodeJs)
+
+## Requirements
+* Create an account on [Recast.AI](https://recast.ai/signup)
+* Create an account on [Kik](https://kik.com/)
+
+## Set up your Recast.AI account
+
+##### Create your bot
+
+* Log in to your Recast.AI account
+* Create a new bot
+
+##### Get your token
+
+* In your profile, click your bot
+* In the tab-menu, click on the the little screw
+* Here is the `request access token` you will need to configure your bot!
+
+## Set up your Kik account
+
+##### Set the Kik-bot account
+
+* Log in to your Kik application on your phone
+* Just follow the steps on the kik app, to create your account
+* Go on this link https://dev.kik.com/#/home, you will find the code you need to scan to have access right to your bot
+* Take your phone go on "Seeting" > "Your Kik code" and use the picture icone to scan the code of your browser.
+* Go on the page Configuration and copy your API Key
+
+## Start your bot in local
+
+#### Ngrok
+
+* Download on your computer  the appropriate version of [Ngrok](https://ngrok.com/download)
+* Open a new tab in your terminal:
+```
+./ngrok http 8080
+```
+* Copy past the ``` https://*******ngrok.io``` you get, you will need it for the next step
+* Leav you Ngrok serveur running
+
+##### Complete the config.js
+
+* Copy your Recast.AI `Recsat.AI access token`
+* Copy your kik.Username `Username of you Kik bot`
+* Copy your kik.apiKey `Apikey of your BOt`
+* Copy your kik.baseUrl  `ngrok https url`
+
+```vim config.js```
+```javascript
+let config = {}
+config.recast = {}
+config.recast.request_token = 'RECAST-TOKEN'
+config.recast.language = 'en' // to chose your language 'fr' or 'en'
+config.kik = {}
+config.kik.username = 'KIK-USERNAME'
+config.kik.apiKey = 'KIK-APIKEY'
+config.kik.baseUrl = 'NGROK-URL'
+
+module.exports = config
+```
+## Code of the bot
+* After the configuration you need to make the call to Kik and Recast.AI.
+Keep in mind Recast.AI and Kik are asynchronous code, we will need to wait for Recast.AI to finish it's process before sending back the answer to Kik. In this case we use a simple Promise to take care of the asynchronous part.
+
+#### Kik call
+```javascript
+bot.updateBotConfiguration()
+bot.onTextMessage((message) => {
+  getRecast(message.body).then((res) => {
+    const intent = res.intent() // get intent from the recastJSON
+      if (intent === undefined) {
+        message.reply('no intent match')
+      } else {
+      message.reply(intent) // the reply we send back to our customer
+   }
+ })
+})
+```
+### Recast.AI call
+```javascript
+function getRecast(message) {
+  return new Promise((resolve, reject) => {
+    client.textRequest(message, (res, err) => {
+      if (err) {
+        reject(err)
+      }
+      resolve(res)
+     })
+  })
+}
+```
+* This code will get the message you sent on your kik application and will return the intent they match, be sure to create intent, and do the propore traing on Recast.Ai beofre testing it.
+
+##### Run
+
+###### if you clone this repo you just need to
+```
+npm install
+```
+Run you bot
+```
+npm start
+```
+###### if you code
+
+Install the dependencies
+
+```
+npm install
+npm install --save recastai
+npm install --save @kikinteractive/kik
+```
+
+Run your bot
+
+```
+node bot.js
+```
+
+## Result
+
+[logo]: https://blog.recast.ai/wp-content/uploads/2016/08/HcqvGX.gif "Result"
+
+![alt text][logo]
+
+## Author
+
+Henri FLoren, henri.floren@recast.ai
+
+You can follow us on Twitter at [@recastai](https://twitter.com/recastai) for updates and releases.
