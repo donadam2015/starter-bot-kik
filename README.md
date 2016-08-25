@@ -27,14 +27,14 @@
 * Log in to your Kik application on your phone
 * Just follow the steps on the kik app, to create your account
 * Go on this link https://dev.kik.com/#/home, you will find the code you need to scan to have access right to your bot
-* Take your phone go on "Seeting" > "Your Kik code" and use the picture icone to scan the code of your browser.
+* Take your phone go on "Setting" > "Your Kik code" and use the picture icone to scan the code of your browser.
 * Go on the page Configuration and copy your API Key
 
 ## Start your bot in local
 
 #### Ngrok
 
-* Download on your computer  the appropriate version of [Ngrok](https://ngrok.com/download)
+* Download on your computer the appropriate version of [Ngrok](https://ngrok.com/download)
 * Open a new tab in your terminal:
 ```
 ./ngrok http 8080
@@ -44,7 +44,7 @@
 
 ##### Complete the config.js
 
-* Copy your Recast.AI `Recsat.AI access token`
+* Copy your Recast.AI `Recast.AI access token`
 * Copy your kik.Username `Username of you Kik bot`
 * Copy your kik.apiKey `Apikey of your BOt`
 * Copy your kik.baseUrl  `ngrok https url`
@@ -93,7 +93,7 @@ function getRecast(message) {
   })
 }
 ```
-* This code will get the message you sent on your Kik application and will return the intent they match, be sure to create intent, and do the proper training on Recast.Ai before testing it.
+* This code will get the message you sent on your Kik application and will return the intent they match, be sure to create intent, and do the proper training on Recast.AI before testing it.
 
 ##### Run
 
@@ -129,6 +129,6 @@ node bot.js
 
 ## Author
 
-Henri FLoren, henri.floren@recast.ai
+Henri Floren, henri.floren@recast.ai
 
 You can follow us on Twitter at [@recastai](https://twitter.com/recastai) for updates and releases.
