@@ -1,4 +1,4 @@
-# Tutorial integration Kik to Recast.AI bot
+# Tutorial: Integrating a Recast.AI bot to Kik
 
 * This is a small Tutorial to show you how to integrate Kik to a Recast.AI bot
 * If you have no idea of how to use Recast.AI I advise you to check this SDK first:  [Recast.AI-nodejs-SDK](https://github.com/RecastAI/SDK-NodeJs)
