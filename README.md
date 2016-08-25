@@ -40,7 +40,7 @@
 ./ngrok http 8080
 ```
 * Copy past the ``` https://*******ngrok.io``` you get, you will need it for the next step
-* Leav you Ngrok serveur running
+* Leave your Ngrok serveur running
 
 ##### Complete the config.js
 
@@ -93,7 +93,7 @@ function getRecast(message) {
   })
 }
 ```
-* This code will get the message you sent on your kik application and will return the intent they match, be sure to create intent, and do the propore traing on Recast.Ai beofre testing it.
+* This code will get the message you sent on your Kik application and will return the intent they match, be sure to create intent, and do the proper training on Recast.Ai before testing it.
 
 ##### Run
 
