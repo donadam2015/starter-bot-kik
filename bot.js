@@ -1,9 +1,10 @@
-import recastai from 'recastai'
+import {Client} from 'recastai'
 import Kik from '@kikinteractive/kik'
 import http from 'http'
 import config from './config.js'
 
-const client = new recastai.Client(config.recast.request_token, config.recast.language)
+
+const client = new Client(config.recast.request_token, config.recast.language)
 
 const bot = new Kik({
   username: config.kik.username,
@@ -11,27 +12,22 @@ const bot = new Kik({
   baseUrl: config.kik.baseUrl,
 })
 
-function getRecast(message) {
-  return new Promise((resolve, reject) => {
-    client.textRequest(message, (res, err) => {
-      if (err) {
-        reject(err)
-      }
-      resolve(res)
-    })
-  })
-}
 
 bot.updateBotConfiguration()
 
 bot.onTextMessage((message) => {
-  getRecast(message.body).then((res) => {
+  client.textRequest(message.body)
+  .then((res) => {
+    console.log('test')
     const intent = res.intent()
-    if (intent === undefined) {
+    console.log(intent)
+    if (intent.slug === undefined) {
       message.reply('no intent match')
     } else {
-      message.reply(intent)
+      message.reply(intent.slug)
     }
+  }).catch((err) => {
+    console.log(err)
   })
 })
 

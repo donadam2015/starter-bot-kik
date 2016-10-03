@@ -64,35 +64,26 @@ module.exports = config
 ```
 ## Code of the bot
 * After the configuration you need to make the call to Kik and Recast.AI.
-Keep in mind Recast.AI and Kik are asynchronous code, we will need to wait for Recast.AI to finish it's process before sending back the answer to Kik. In this case we use a simple Promise to take care of the asynchronous part.
 
-#### Kik call
+#### index.js
 ```javascript
-bot.updateBotConfiguration()
 bot.onTextMessage((message) => {
-  getRecast(message.body).then((res) => {
-    const intent = res.intent() // get intent from the recastJSON
-      if (intent === undefined) {
-        message.reply('no intent match')
-      } else {
-      message.reply(intent) // the reply we send back to our customer
-   }
- })
+  client.textRequest(message.body)
+  .then((res) => {
+    console.log('test')
+    const intent = res.intent()
+    console.log(intent)
+    if (intent.slug === undefined) {
+      message.reply('no intent match')
+    } else {
+      message.reply(intent.slug)
+    }
+  }).catch((err) => {
+    console.log(err)
+  })
 })
 ```
-### Recast.AI call
-```javascript
-function getRecast(message) {
-  return new Promise((resolve, reject) => {
-    client.textRequest(message, (res, err) => {
-      if (err) {
-        reject(err)
-      }
-      resolve(res)
-     })
-  })
-}
-```
+
 * This code will get the message you sent on your Kik application and will return the intent they match, be sure to create intent, and do the proper training on Recast.AI before testing it.
 
 ##### Run
