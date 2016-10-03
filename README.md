@@ -65,7 +65,7 @@ module.exports = config
 ## Code of the bot
 * After the configuration you need to make the call to Kik and Recast.AI.
 
-#### index.js
+#### bot.js
 ```javascript
 bot.onTextMessage((message) => {
   client.textRequest(message.body)
