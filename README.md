@@ -62,8 +62,8 @@ config.kik.baseUrl = 'NGROK-URL'
 
 module.exports = config
 ```
-##### Run
-
+## Run
+* make sure to have ngrok launched and the correct URL in you config file.
 ```
 npm install
 npm start
