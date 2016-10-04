@@ -12,19 +12,18 @@ const bot = new Kik({
   baseUrl: config.kik.baseUrl,
 })
 
-
 bot.updateBotConfiguration()
 
 bot.onTextMessage((message) => {
-  client.textRequest(message.body)
-  .then((res) => {
-    console.log('test')
-    const intent = res.intent()
-    console.log(intent)
-    if (intent.slug === undefined) {
-      message.reply('no intent match')
+  console.log(message) // voir ou est stoker l'id du messsage
+  client.converse(message.body, message.id).then((res) => {
+    //  let replies =//mhetdoe to get the replies
+    if (!replies) {
+      replies.forEach(replie => {
+        message.reply(replie)
+      })
     } else {
-      message.reply(intent.slug)
+      message.reply('no reply to send')
     }
   }).catch((err) => {
     console.log(err)
