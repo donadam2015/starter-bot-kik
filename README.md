@@ -62,10 +62,25 @@ config.kik.baseUrl = 'NGROK-URL'
 
 module.exports = config
 ```
-## Code of the bot
-* After the configuration you need to make the call to Kik and Recast.AI.
+##### Run
 
-#### bot.js
+###### if you clone this repo you just need to
+```
+npm install
+```
+Run you bot
+```
+npm start
+
+## Result
+
+[logo]: https://blog.recast.ai/wp-content/uploads/2016/08/HcqvGX.gif "Result"
+
+![alt text][logo]
+
+### Your bot
+* All you need for you bot is in the index.js file.
+
 ```javascript
 bot.onTextMessage((message) => {
   client.textRequest(message.body)
@@ -83,40 +98,7 @@ bot.onTextMessage((message) => {
   })
 })
 ```
-
 * This code will get the message you sent on your Kik application and will return the intent they match, be sure to create intent, and do the proper training on Recast.AI before testing it.
-
-##### Run
-
-###### if you clone this repo you just need to
-```
-npm install
-```
-Run you bot
-```
-npm start
-```
-###### if you code
-
-Install the dependencies
-
-```
-npm install
-npm install --save recastai
-npm install --save @kikinteractive/kik
-```
-
-Run your bot
-
-```
-node bot.js
-```
-
-## Result
-
-[logo]: https://blog.recast.ai/wp-content/uploads/2016/08/HcqvGX.gif "Result"
-
-![alt text][logo]
 
 ## Author
 
