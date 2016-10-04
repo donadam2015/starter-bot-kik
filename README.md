@@ -1,4 +1,4 @@
-# Tutorial: Integrating a Recast.AI bot to Kik
+# Integration Kik to Recast.AI bot
 
 * This is a small Tutorial to show you how to integrate Kik to a Recast.AI bot
 * If you have no idea of how to use Recast.AI I advise you to check this SDK first:  [Recast.AI-nodejs-SDK](https://github.com/RecastAI/SDK-NodeJs)
@@ -62,7 +62,7 @@ config.kik.baseUrl = 'NGROK-URL'
 
 module.exports = config
 ```
-## Run
+## Launching your Bot
 * make sure to have ngrok launched and the correct URL in you config file.
 ```
 npm install
