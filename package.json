@@ -2,10 +2,10 @@
   "name": "kik",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bot.js",
   "scripts": {
-    "start": "node ./node_modules/babel-cli/bin/babel-node.js index.js",
-    "lint": "eslint index.js"
+    "start": "node ./node_modules/babel-cli/bin/babel-node.js bot.js",
+    "lint": "eslint bot.js"
   },
   "author": "",
   "license": "ISC",

@@ -18,6 +18,8 @@ bot.onTextMessage((message) => {
   console.log(message) // voir ou est stoker l'id du messsage
   client.converse(message.body, message.id).then((res) => {
     //  let replies =//mhetdoe to get the replies
+    let action = action()
+    console.log(action)
     if (!replies) {
       replies.forEach(replie => {
         message.reply(replie)
