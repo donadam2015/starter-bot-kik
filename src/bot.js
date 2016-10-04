@@ -1,4 +1,4 @@
-import {Client} from 'recastai'
+import { Client } from 'recastai'
 import Kik from '@kikinteractive/kik'
 import http from 'http'
 import config from '../config.js'
@@ -17,9 +17,11 @@ bot.updateBotConfiguration()
 bot.onTextMessage((message) => {
   console.log(message) // voir ou est stoker l'id du messsage
   client.converse(message.body, message.id).then((res) => {
-    //  let replies =//mhetdoe to get the replies
-    let action = action()
-    console.log(action)
+    /** CODE YOUR bot **/
+    const replies = res.replies() /* To get a array of the response of your bot. */
+    const action = res.action() /* Get the object action. */
+
+    console.log(action) /* You can use 'action.done' to trigger a specification action when it's at true. */
     if (!replies) {
       replies.forEach(replie => {
         message.reply(replie)
@@ -32,6 +34,6 @@ bot.onTextMessage((message) => {
   })
 })
 
-let server = http
+const server = http
 .createServer(bot.incoming())
 .listen(process.env.PORT || 8080)

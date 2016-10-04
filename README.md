@@ -77,18 +77,23 @@ npm start
 
 ### Your bot
 * All you need for you bot is in the bot.js file.
-
+* ```const replies``` To get a array of the response of your bot.
+* ``` const action``` Get the object action. You can use 'action.done' to trigger a specification action when it's at true.
 ```javascript
 bot.onTextMessage((message) => {
-  client.textRequest(message.body)
-  .then((res) => {
-    console.log('test')
-    const intent = res.intent()
-    console.log(intent)
-    if (intent.slug === undefined) {
-      message.reply('no intent match')
+  console.log(message) // voir ou est stoker l'id du messsage
+  client.converse(message.body, message.id).then((res) => {
+    /** CODE YOUR bot **/
+    const replies = res.replies() /* To get a array of the response of your bot. */
+    const action = res.action() /*Get the object action.*/
+
+    console.log(action) /* You can use 'action.done' to trigger a specification action when it's at true. */
+    if (!replies) {
+      replies.forEach(replie => {
+        message.reply(replie)
+      })
     } else {
-      message.reply(intent.slug)
+      message.reply('no reply to send')
     }
   }).catch((err) => {
     console.log(err)
