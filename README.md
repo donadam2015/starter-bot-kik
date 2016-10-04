@@ -77,7 +77,7 @@ npm start
 
 ### Your bot
 * All you need for you bot is in the bot.js file.
-* This code will get the message you sent on your Kik application and will return the intent they match, be sure to create intent, and do the proper training on Recast.AI before testing it.
+* This code will get the message you sent on your Kik application and will return each response associates to this intent in your builder, be sure to create a intent and do the proper training  on Recast.AI before testing it.
 * ```const replies``` To get a array of the response of your bot.
 * ``` const action``` Get the object action. You can use 'action.done' to trigger a specification action when it's at
 true.
