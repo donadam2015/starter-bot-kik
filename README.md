@@ -64,13 +64,10 @@ module.exports = config
 ```
 ##### Run
 
-###### if you clone this repo you just need to
 ```
 npm install
-```
-Run you bot
-```
 npm start
+```
 
 ## Result
 
