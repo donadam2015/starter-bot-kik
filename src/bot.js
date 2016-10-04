@@ -1,7 +1,7 @@
 import {Client} from 'recastai'
 import Kik from '@kikinteractive/kik'
 import http from 'http'
-import config from './config.js'
+import config from '../config.js'
 
 
 const client = new Client(config.recast.request_token, config.recast.language)
