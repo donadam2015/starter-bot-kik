@@ -76,7 +76,7 @@ npm start
 ![alt text][logo]
 
 ### Your bot
-* All you need for you bot is in the index.js file.
+* All you need for you bot is in the bot.js file.
 
 ```javascript
 bot.onTextMessage((message) => {
