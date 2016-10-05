@@ -76,27 +76,26 @@ npm start
 ![alt text][logo]
 
 ### Your bot
-* All you need for you bot is in the bot.js file.
-* This code will get the message you sent on your Kik application and will return each response associates to this intent of your builder, be sure to create a intent and do the proper training  on Recast.AI before testing it.
-* ```client.textConverse(message.body, { converseToken: message.chatid })``` To use this method you need to past your text, and the id of your chat to create for each users a specific interaction with your bot.
-* ```const reply``` To get the first reply of your bot.
-* ```const replies``` To get an array of all your replies
-* ``` const action``` Get the object action. You can use 'action.done' to trigger a specification action when it's at true.
+* All you need for you bot is in the bot.js file. The call to Recast.AI is already done.
+* ```client.textConverse(message.body, { converseToken: message.chatid })``` To use this method you need to pass the user's input, and  a unique conversation token. This token can be the message.chatid of the messenger chat. This token will create for each users a specific conversation with your bot.
+* ```res.reply()``` To get the first reply of your bot.
+* ```res.replies``` To get an array of all your replies.
+* ``` res.action``` Get the object action. When an action is complete you will have the ```action.done = true ``` and you will be able to trigger a specific behavior.
 
 ```javascript
 bot.onTextMessage((message) => {
   client.textConverse(message.body, { converseToken: message.chatid }).then((res) => {
-    const reply = res.reply()              /* To get the first reply of your bot. */
-    const replies = res.replies            /* An array of all your replies */
-    const action = res.action              /* Get the object action. You can use 'action.done' to trigger a specification action when it's at true. */
-
-    console.log(`reply: ${reply}`)
-    console.log(`replies: ${replies}`)
-    console.log(`action: ${action}`)
-    if (reply) {
-      message.reply(reply)
+    const reply = res.reply()               /* To get the first reply of your bot. */
+    const replies = res.replies             /* An array of all your replies */
+    const action = res.action               /* Get the object action. You can use 'action.done' to trigger a specification action when it's at true. */
+    if (!reply) {
+      message.reply('i dont\'t get it :(')
     } else {
-      message.reply('no reply to send')
+      if (action && action.done === true) {
+         console.log('action is done')
+        // Use external services: use res.memory('knowledge') if you got a knowledge from this action
+       }
+      replies.forEach(res => message.reply(res))
     }
   }).catch((err) => {
     console.log(err)
