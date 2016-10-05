@@ -16,17 +16,18 @@ bot.updateBotConfiguration()
 
 bot.onTextMessage((message) => {
   client.textConverse(message.body, { converseToken: message.chatid }).then((res) => {
-    const reply = res.reply()              /* To get the first reply of your bot. */
-    const replies = res.replies            /* An array of all your replies */
-    const action = res.action              /* Get the object action. You can use 'action.done' to trigger a specification action when it's at true. */
+    const reply = res.reply()               /* To get the first reply of your bot. */
+    const replies = res.replies             /* An array of all your replies */
+    const action = res.action               /* Get the object action. You can use 'action.done' to trigger a specification action when it's at true. */
 
-    console.log(`reply: ${reply}`)
-    console.log(`replies: ${replies}`)
-    console.log(`action: ${action}`)
-    if (reply) {
-      message.reply(reply)
+    if (!reply) {
+      message.reply('i dont\'t get it :(')
     } else {
-      message.reply('no reply to send')
+      if (action && action.done === true) {
+        console.log('action is done')
+        // Use external services: use res.memory('knowledge') if you got a knowledge from this action
+      }
+      replies.forEach(rep => message.reply(rep))
     }
   }).catch((err) => {
     console.log(err)
