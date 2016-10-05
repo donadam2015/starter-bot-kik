@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@kikinteractive/kik": "^2.0.10",
-    "recastai": "^2.1.0"
+    "recastai": "git+https://github.com/RecastAI/SDK-NodeJS.git#develop"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",

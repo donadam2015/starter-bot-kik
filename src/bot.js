@@ -15,17 +15,16 @@ const bot = new Kik({
 bot.updateBotConfiguration()
 
 bot.onTextMessage((message) => {
-  console.log(message) // voir ou est stoker l'id du messsage
-  client.converse(message.body, message.id).then((res) => {
-    /** CODE YOUR bot **/
-    const replies = res.replies() /* To get a array of the response of your bot. */
-    const action = res.action() /* Get the object action. */
+  client.textConverse(message.body, { converseToken: message.chatid }).then((res) => {
+    const reply = res.reply()              /* To get the first reply of your bot. */
+    const replies = res.replies            /* An array of all your replies */
+    const action = res.action              /* Get the object action. You can use 'action.done' to trigger a specification action when it's at true. */
 
-    console.log(action) /* You can use 'action.done' to trigger a specification action when it's at true. */
-    if (!replies) {
-      replies.forEach(replie => {
-        message.reply(replie)
-      })
+    console.log(`reply: ${reply}`)
+    console.log(`replies: ${replies}`)
+    console.log(`action: ${action}`)
+    if (reply) {
+      message.reply(reply)
     } else {
       message.reply('no reply to send')
     }
