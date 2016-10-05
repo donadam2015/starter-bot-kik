@@ -1,4 +1,4 @@
-let config = {}
+const config = {}
 config.recast = {}
 config.recast.request_token = 'RECAST-TOKEN'
 config.recast.language = 'en' // to chose your language 'fr' or 'en'
