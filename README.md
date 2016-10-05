@@ -78,6 +78,7 @@ npm start
 ### Your bot
 * All you need for you bot is in the bot.js file.
 * This code will get the message you sent on your Kik application and will return each response associates to this intent of your builder, be sure to create a intent and do the proper training  on Recast.AI before testing it.
+* ```client.textConverse(message.body, { converseToken: message.chatid })``` To use this method you need to past your text, and the id of your chat like that each user will have a specific interaction with your bot.
 * ```const reply``` To get the first reply of your bot.
 * ```const replies``` To get an array of all your replies
 * ``` const action``` Get the object action. You can use 'action.done' to trigger a specification action when it's at true.
