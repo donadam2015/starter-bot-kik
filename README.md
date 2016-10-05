@@ -1,4 +1,4 @@
-# Integration Kik to Recast.AI bot
+# Start coding your bot: Recast.AI + Kik
 
 * This is a small Tutorial to show you how to integrate Kik to a Recast.AI bot
 * If you have no idea of how to use Recast.AI I advise you to check this SDK first:  [Recast.AI-nodejs-SDK](https://github.com/RecastAI/SDK-NodeJs)
@@ -88,14 +88,15 @@ bot.onTextMessage((message) => {
     const reply = res.reply()               /* To get the first reply of your bot. */
     const replies = res.replies             /* An array of all your replies */
     const action = res.action               /* Get the object action. You can use 'action.done' to trigger a specification action when it's at true. */
+
     if (!reply) {
       message.reply('i dont\'t get it :(')
     } else {
       if (action && action.done === true) {
-         console.log('action is done')
+        console.log('action is done')
         // Use external services: use res.memory('knowledge') if you got a knowledge from this action
-       }
-      replies.forEach(res => message.reply(res))
+      }
+      replies.forEach(rep => message.reply(rep))
     }
   }).catch((err) => {
     console.log(err)
