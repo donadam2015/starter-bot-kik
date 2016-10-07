@@ -1,4 +1,4 @@
-# Integration Kik to Recast.AI bot
+# Start coding your bot: Recast.AI + Kik
 
 * This is a small Tutorial to show you how to integrate Kik to a Recast.AI bot
 * If you have no idea of how to use Recast.AI I advise you to check this SDK first:  [Recast.AI-nodejs-SDK](https://github.com/RecastAI/SDK-NodeJs)
@@ -88,14 +88,15 @@ bot.onTextMessage((message) => {
     const reply = res.reply()               /* To get the first reply of your bot. */
     const replies = res.replies             /* An array of all your replies */
     const action = res.action               /* Get the object action. You can use 'action.done' to trigger a specification action when it's at true. */
+
     if (!reply) {
       message.reply('i dont\'t get it :(')
     } else {
       if (action && action.done === true) {
-         console.log('action is done')
+        console.log('action is done')
         // Use external services: use res.memory('knowledge') if you got a knowledge from this action
-       }
-      replies.forEach(res => message.reply(res))
+      }
+      replies.forEach(rep => message.reply(rep))
     }
   }).catch((err) => {
     console.log(err)
@@ -109,3 +110,25 @@ bot.onTextMessage((message) => {
 Henri Floren, henri.floren@recast.ai
 
 You can follow us on Twitter at [@recastai](https://twitter.com/recastai) for updates and releases.
+
+## License
+
+Copyright (c) [2016] [Recast.AI](https://recast.ai)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
