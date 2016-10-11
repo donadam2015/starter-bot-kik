@@ -84,7 +84,7 @@ npm start
 
 ```javascript
 bot.onTextMessage((message) => {
-  client.textConverse(message.body, { conversation_token: message.chatid }).then((res) => {
+  client.textConverse(message.body, { conversationToken: message.chatid }).then((res) => {
     const reply = res.reply()               /* To get the first reply of your bot. */
     const replies = res.replies             /* An array of all your replies */
     const action = res.action               /* Get the object action. You can use 'action.done' to trigger a specification action when it's at true. */
